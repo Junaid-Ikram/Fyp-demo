@@ -1,7 +1,8 @@
-export default function DashboardPage() {
+export default function CandidateRegistrationPage() {
   return (
     <>
-      <div>
+      <div className="dashboard-pages-components-container">
+        {" "}
         <button
           style={{
             color: "black",
@@ -11,7 +12,7 @@ export default function DashboardPage() {
             padding: "20px",
           }}
         >
-          Dashboard
+          Candidate Registration Page
         </button>
       </div>
     </>

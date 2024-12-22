@@ -1,0 +1,134 @@
+.stepper-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  text-align: center;
+  background: rgba(192, 191, 191, 0.225);
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.279);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.step-indicator {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.step-indicator.active {
+  background-color: #000000;
+  color: #fff;
+}
+
+.step-indicator.inactive {
+  background-color: #e6e6e6;
+  color: #aaa;
+}
+
+.step-label {
+  margin-left: 10px;
+  font-weight: 400;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.step-label.active {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.step-label.inactive {
+  color: #aaa;
+}
+
+.connector-line {
+  flex: 1;
+  height: 2px;
+  width: 400px;
+  margin-left: 15px;
+  margin-right: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.connector-line.active {
+  background-color: #000000;
+}
+
+.connector-line.inactive {
+  background-color: #ccc;
+}
+
+.step-content {
+  padding: 20px;
+  border-radius: 8px;
+
+  /* background-color: rgb(234, 234, 234); */
+}
+
+.navigation-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation-buttons.single {
+  justify-content: flex-end;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button.back {
+  background-color: #000000;
+}
+
+.button.back:hover {
+  background-color: #b3b3b3; /* Darker gray on hover */
+}
+
+.button.back:active {
+  background-color: #999; /* Even darker gray on active */
+  transform: scale(0.95); /* Slightly shrink on active */
+}
+
+.button.next {
+  background-color: #00bcd4;
+}
+
+.button.next:hover {
+  background-color: #0097a7; /* Darker teal on hover */
+}
+
+.button.next:active {
+  background-color: #006064; /* Even darker teal on active */
+  transform: scale(0.95); /* Slightly shrink on active */
+}

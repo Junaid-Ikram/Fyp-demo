@@ -1,18 +1,19 @@
-export default function VotingRegistrationPage() {
+export default function AdminRegistrationPage() {
   return (
     <>
-      <div>
+      <div className="dashboard-pages-components-container">
         {" "}
-        <h1
+        <button
           style={{
             color: "black",
+
             margin: "30px",
             marginLeft: "500px",
             padding: "20px",
           }}
         >
-          Voting Registration
-        </h1>
+          Admin Registration Page
+        </button>
       </div>
     </>
   );

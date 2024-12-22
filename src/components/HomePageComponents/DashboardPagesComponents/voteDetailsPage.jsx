@@ -1,8 +1,7 @@
-export default function DummyPage() {
+export default function DashboardPage() {
   return (
     <>
-      <div>
-        {" "}
+      <div className="dashboard-pages-components-container">
         <button
           style={{
             color: "black",
@@ -12,7 +11,7 @@ export default function DummyPage() {
             padding: "20px",
           }}
         >
-          Dummy Page
+          Dashboard
         </button>
       </div>
     </>

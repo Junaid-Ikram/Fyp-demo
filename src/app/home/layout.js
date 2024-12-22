@@ -12,15 +12,15 @@ export default function RootLayout({ children }) {
         {" "}
         <SidebarProvider
           style={{
-            "--sidebar-width": "13rem",
+            "--sidebar-width": "13.5rem",
           }}
         >
           <AppSidebar />
           <main>
             <SidebarTrigger />
-            {children}
-          </main>
-        </SidebarProvider>
+          </main>{" "}
+          {children}
+        </SidebarProvider>{" "}
       </body>
     </html>
   );

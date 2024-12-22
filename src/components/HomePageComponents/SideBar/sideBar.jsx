@@ -18,32 +18,28 @@ import Link from "next/link";
 const items = [
   {
     title: "Vote Details",
-    url: "/home/dashboard",
+    url: "/home/votingDashboard",
     icon: LayoutDashboard,
   },
   {
     title: "Voter Registration",
-    url: "/home/registration",
+    url: "/home/voterRegistration",
     icon: FileUser,
   },
   {
     title: "Candidate Registration",
-    url: "#",
+    url: "/home/candidateRegistration",
     icon: candidate,
   },
   {
-    title: "Voter",
-    url: "#",
-    icon: voting,
-  },
-  {
-    title: "Dummy",
-    url: "/home/dummy",
+    title: "Admin Registration",
+    url: "/home/adminRegistration",
     icon: Settings,
   },
 ];
 
 export function AppSidebar() {
+  const adminPage = "dmin";
   const [activeItem, setActiveItem] = useState(null);
 
   const handleSetActive = (title) => {
@@ -57,20 +53,39 @@ export function AppSidebar() {
           <SidebarGroupLabel>Registration Dashboard</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={activeItem === item.title}
-                    onClick={() => handleSetActive(item.title)}
-                  >
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {adminPage === "Admin"
+                ? items
+                    .filter((item) => item.title === "Admin Registration")
+                    .map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={activeItem === item.title}
+                          onClick={() => handleSetActive(item.title)}
+                        >
+                          <Link href={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))
+                : items
+                    .filter((item) => item.title !== "Admin Registration")
+                    .map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={activeItem === item.title}
+                          onClick={() => handleSetActive(item.title)}
+                        >
+                          <Link href={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
