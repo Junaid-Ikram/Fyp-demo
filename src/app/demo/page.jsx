@@ -1,9 +1,14 @@
-import FileUploadComponent from "@/components/HomePageComponents/RegistrationFormComponents/form/fileUpload/fileUpload";
+import TermsAndConditionsComponent from "@/components/HomePageComponents/RegistrationFormComponents/form/termsAndConditions/termsAndConditions";
 
+import "primeicons/primeicons.css";
+import "primereact/resources/themes/lara-light-purple/theme.css";
 export default function demoPage() {
   return (
     <>
-      <FileUploadComponent />
+      <div style={{ paddingTop: "5px", paddingLeft: "10px", width: "50rem" }}>
+        {" "}
+        <TermsAndConditionsComponent />
+      </div>
     </>
   );
 }

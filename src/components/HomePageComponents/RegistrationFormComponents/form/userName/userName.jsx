@@ -24,6 +24,7 @@ export default function UserName(props) {
             width: "50rem",
             border: "2px solid #ced4da",
           }}
+          tooltip={`Enter your ${props.name}`}
         />
         <label htmlFor={props.name}>{props.name}</label>
       </FloatLabel>

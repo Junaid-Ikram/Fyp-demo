@@ -17,6 +17,7 @@ export default function CalenderComponent() {
         <Calendar
           value={date}
           onChange={(e) => setDate(e.value)}
+          tooltip="Enter your Date of Birth"
           style={{
             border: "1px solid #ced4da",
             height: "40px",

@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
 } from "./ui/sidebar";
 import candidate from "../SideBar/iconSvgs/candidate";
-import voting from "./iconSvgs/voting";
+// import voting from "./iconSvgs/voting";
 import Link from "next/link";
 
 const items = [

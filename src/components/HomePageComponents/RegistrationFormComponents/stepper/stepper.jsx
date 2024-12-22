@@ -2,13 +2,17 @@
 import { useState } from "react";
 import "./newStepperComponent.css";
 import "primeicons/primeicons.css";
-export default function StepperComponent({ VoterStep1, VoterStep2 }) {
+export default function StepperComponent({
+  VoterStep1,
+  VoterStep2,
+  VoterStep3,
+}) {
   const [currentStep, setCurrentStep] = useState(1);
 
   const steps = [
     { id: 1, label: "Step 1", content: VoterStep1 },
     { id: 2, label: "Step 2", content: VoterStep2 },
-    { id: 3, label: "Step 3", content: "Content III" },
+    { id: 3, label: "Step 3", content: VoterStep3 },
   ];
 
   const handleNext = () => {

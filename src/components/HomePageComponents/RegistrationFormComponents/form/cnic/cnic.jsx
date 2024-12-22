@@ -18,6 +18,7 @@ export default function CnicComponent() {
         onChange={(e) => setValue(e.target.value)}
         mask="99999-9999999-9"
         placeholder="99999-9999999-9"
+        tooltip="Enter your CNIC"
         style={{ height: "40px", width: "50rem", border: "2px solid #ced4da" }}
       />
     </div>

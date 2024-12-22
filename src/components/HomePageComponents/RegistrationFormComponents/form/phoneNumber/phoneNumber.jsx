@@ -18,6 +18,7 @@ export default function PhoneNumber() {
         onChange={(e) => setValue(e.target.value)}
         mask="9999-9999999"
         placeholder="9999-9999999"
+        tooltip="Enter you Number"
         style={{ height: "40px", width: "50rem" }}
       />
     </div>
