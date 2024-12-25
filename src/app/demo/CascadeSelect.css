@@ -1,0 +1,64 @@
+/* General Dropdown Styles
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown-button:hover {
+  background-color: #0056b3;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-top: 5px;
+  padding: 10px 0;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+
+.submenu {
+  display: none;
+  background-color: #f9f9f9;
+  padding: 10px 20px;
+  margin: 5px 0 0 10px;
+  border-left: 2px solid #ddd;
+}
+
+.submenu.open {
+  display: block;
+}
+
+.submenu-item {
+  padding: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.submenu-item:hover {
+  color: #000;
+} */

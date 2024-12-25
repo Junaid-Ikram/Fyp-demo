@@ -1,10 +1,12 @@
-import UserName from "../../../form/userName/userName";
-import CnicComponent from "../../../form/cnic/cnic";
+import UserName from "../../../form/inputfields/userName/userName";
+import CnicComponent from "../../../form/inputfields/cnic/cnic";
 import CalenderComponent from "../../../form/calender/calender";
 import AddressComponent from "../../../form/address/address";
-import PhoneNumber from "../../../form/phoneNumber/phoneNumber";
+import PhoneNumber from "../../../form/inputfields/phoneNumber/phoneNumber";
 import RadioComponent from "../../../form/radio/radio";
 import "primereact/resources/themes/lara-light-purple/theme.css";
+
+import styles from "../StepperStepsScrollbar.module.css";
 export default function VoterStep1() {
   return (
     <>
@@ -14,8 +16,8 @@ export default function VoterStep1() {
           flexDirection: "column",
           textAlign: "start",
           height: "400px",
-          overflowY: "scroll",
         }}
+        className={styles.stepperScrollBar}
       >
         <div>
           <h1

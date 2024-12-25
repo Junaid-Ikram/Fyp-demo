@@ -21,7 +21,7 @@ export default function CalenderComponent() {
           style={{
             border: "1px solid #ced4da",
             height: "40px",
-            width: "50rem",
+            width: "35rem",
           }}
         />
       </div>

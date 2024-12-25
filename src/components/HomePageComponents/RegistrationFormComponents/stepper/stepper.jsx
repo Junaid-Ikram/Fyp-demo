@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./newStepperComponent.css";
 import "primeicons/primeicons.css";
+
 export default function StepperComponent({
   VoterStep1,
   VoterStep2,
