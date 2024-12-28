@@ -3,8 +3,10 @@ import React, { useState } from "react";
 
 import styles from "../InputFields.module.css";
 
-export default function CnicComponent() {
+export default function CnicComponent({ setCnicValid }) {
   const [cnicValue, setCnicValue] = useState("");
+  const [cnicIsTouched, setcnicIsTouched] = useState(false);
+  const [cnicIsInvalid, setcnicIsInvalid] = useState(false);
 
   const handleCnicChange = (event) => {
     let value = event.target.value.replace(/\D/g, "");
@@ -16,9 +18,23 @@ export default function CnicComponent() {
     }
     setCnicValue(value.slice(0, 15));
   };
-
+  function handleBlur() {
+    setcnicIsTouched(true);
+    const cnicPattern = /^\d{5}-\d{7}-\d{1}$/;
+    if (!cnicPattern.test(cnicValue)) {
+      setcnicIsInvalid(true);
+      setCnicValid(false);
+    } else {
+      setcnicIsInvalid(false);
+      setCnicValid(true);
+    }
+  }
   return (
-    <div className={styles.userInputContainer}>
+    <div
+      className={`${styles.userInputContainer} ${
+        cnicIsInvalid ? styles.invalid : ""
+      }`}
+    >
       <input
         className={styles.userInput}
         type="text"
@@ -27,6 +43,7 @@ export default function CnicComponent() {
         placeholder="99999-9999999-9"
         value={cnicValue}
         onChange={handleCnicChange}
+        onBlur={handleBlur}
         pattern="\d{5}-\d{7}-\d{1}"
         title="Please enter a valid CNIC in the format 99999-9999999-9"
       />
@@ -34,6 +51,9 @@ export default function CnicComponent() {
         <span className={styles.tooltipText}>Enter CNIC</span>
         <div className={styles.tooltipArrow}></div>
       </div>
+      {cnicIsTouched && cnicIsInvalid && (
+        <span className={styles.userErrorText}>Please Enter Your CNIC</span>
+      )}
     </div>
   );
 }
