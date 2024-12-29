@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { CascadeSelect } from "primereact/cascadeselect";
 // import "primereact/resources/themes/lara-dark-purple/theme.css";
 
-export default function AddressComponent() {
+export default function AddressComponent(props) {
   const [selectedCity, setSelectedCity] = useState(null);
   const countries = [
     {
@@ -97,8 +97,8 @@ export default function AddressComponent() {
         optionGroupChildren={["states", "cities"]}
         className="w-full md:w-14rem"
         breakpoint="767px"
-        placeholder="Select a City"
-        style={{ maxWidth: "15rem" }}
+        placeholder={`Select your ${props.selections}`}
+        style={{ maxWidth: "17rem" }}
       />
     </div>
   );

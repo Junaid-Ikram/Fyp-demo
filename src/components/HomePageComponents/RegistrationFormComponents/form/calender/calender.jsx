@@ -1,29 +1,49 @@
 "use client";
 import React, { useState } from "react";
 import { Calendar } from "primereact/calendar";
-// import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
-export default function CalenderComponent() {
+import styles from "./Calender.module.css";
+
+export default function CalenderComponent({ setDateSelected }) {
   const [date, setDate] = useState(null);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const currentDate = new Date();
+
+  const handleDateChange = (e) => {
+    setDate(e.value);
+    if (e.value) {
+      setDateSelected(true);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
+  };
 
   return (
     <>
       <div
-        className="card flex justify-content-center"
-        style={{
-          paddingTop: "5px",
-          paddingLeft: "10px",
-        }}
+        className={styles.calendarContainer}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <Calendar
           value={date}
-          onChange={(e) => setDate(e.value)}
-          tooltip="Enter your Date of Birth"
-          style={{
-            border: "1px solid #ced4da",
-            height: "40px",
-            width: "35rem",
-          }}
+          onChange={handleDateChange}
+          maxDate={currentDate}
+          className={styles.calendarInput}
         />
+        {showTooltip && (
+          <div className={styles.calendarTooltipContent}>
+            <span className={styles.calendarTooltipText}>
+              Enter your Date of Birth
+            </span>
+            <div className={styles.calendarTooltipArrow}></div>
+          </div>
+        )}
       </div>
     </>
   );

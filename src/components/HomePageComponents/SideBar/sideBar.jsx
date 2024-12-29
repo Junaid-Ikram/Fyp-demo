@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { LayoutDashboard, FileUser, Settings } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
 } from "./ui/sidebar";
 import candidate from "../SideBar/iconSvgs/candidate";
-// import voting from "./iconSvgs/voting";
+import voting from "./iconSvgs/voting";
 import Link from "next/link";
 
 const items = [
@@ -24,7 +24,7 @@ const items = [
   {
     title: "Voter Registration",
     url: "/home/voterRegistration",
-    icon: FileUser,
+    icon: voting,
   },
   {
     title: "Candidate Registration",
@@ -34,12 +34,12 @@ const items = [
   {
     title: "Admin Registration",
     url: "/home/adminRegistration",
-    icon: Settings,
+    icon: candidate,
   },
 ];
 
 export function AppSidebar() {
-  const adminPage = "dmin";
+  const adminPage = "Admin";
   const [activeItem, setActiveItem] = useState(null);
 
   const handleSetActive = (title) => {
@@ -53,7 +53,7 @@ export function AppSidebar() {
           <SidebarGroupLabel>Registration Dashboard</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {adminPage === "Admin"
+              {adminPage === "dmin"
                 ? items
                     .filter((item) => item.title === "Admin Registration")
                     .map((item) => (

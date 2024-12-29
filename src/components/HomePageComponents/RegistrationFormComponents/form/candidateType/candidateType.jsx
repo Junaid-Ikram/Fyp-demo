@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./RadioButtons.module.css";
+import styles from "../radio/RadioButtons.module.css";
 import { FaMale, FaFemale } from "react-icons/fa";
 import { BiMaleFemale } from "react-icons/bi";
-export default function RadioButtons({ setGenderSelected }) {
+export default function CascadeSelectComponent() {
   function handleGenderChange() {
     setGenderSelected(true);
   }

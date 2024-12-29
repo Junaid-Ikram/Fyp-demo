@@ -1,28 +1,78 @@
+"use client";
+import { useEffect, useState } from "react";
 import FileUploadComponent from "../../../form/fileUpload/fileUpload";
 import "primereact/resources/themes/lara-light-purple/theme.css";
 import FingerprintVerification from "../../../form/fingerPrint/fingerPrint";
 import styles from "../StepperStepsScrollbar.module.css";
-export default function VoterStep2() {
+import { RiScrollToBottomLine } from "react-icons/ri";
+export default function VoterStep2({ registrationType, setIsStep2Invalid }) {
+  const [isCnicImageUploaded, setCnicImageUploaded] = useState(false);
+  const [isProfileImageUploaded, setProfileImageUploaded] = useState(false);
+
+  useEffect(() => {
+    if (registrationType === "candidateRegistration") {
+      if (isCnicImageUploaded && isProfileImageUploaded) {
+        setIsStep2Invalid(false);
+      } else {
+        setIsStep2Invalid(true); // should be true
+      }
+    } else {
+      if (isCnicImageUploaded) {
+        setIsStep2Invalid(false);
+      } else {
+        setIsStep2Invalid(true); // should be true
+      }
+    }
+  }, [isCnicImageUploaded, isProfileImageUploaded]);
   return (
     <>
-      <div style={{ height: "300px" }} className={styles.stepperScrollBar}>
+      <div style={{ height: "410px" }} className={styles.stepperScrollBar}>
         {" "}
         <div>
-          <h1 style={{ marginBottom: "10px", borderBottom: "1px solid black" }}>
-            CNIC VERIFICATION
-          </h1>
-          <FileUploadComponent />
+          <FileUploadComponent
+            fileUploaded={setCnicImageUploaded}
+            fileInputId="fileInputCnic"
+            headings=" Upload Your CNIC image for Verification by Clicking Button"
+          />
         </div>
+        <span
+          style={{
+            alignItems: "center",
+            display: "flex",
+            flexFlow: "column",
+            marginTop: "4.3rem",
+            marginBottom: "4.3rem",
+          }}
+        >
+          {" "}
+          <RiScrollToBottomLine style={{ fontSize: "35px" }} />
+          <span>Scroll</span>
+        </span>
+        {registrationType === "candidateRegistration" ? (
+          <>
+            <div>
+              <FileUploadComponent
+                fileUploaded={setProfileImageUploaded}
+                fileInputId="fileInputProfile"
+                headings=" Upload Your Profile image for Verification by Clicking Button"
+              />
+            </div>
+            <span
+              style={{
+                alignItems: "center",
+                display: "flex",
+                flexFlow: "column",
+                marginTop: "4.3rem",
+                marginBottom: "4.3rem",
+              }}
+            >
+              {" "}
+              <RiScrollToBottomLine style={{ fontSize: "35px" }} />
+              <span>Scroll</span>
+            </span>
+          </>
+        ) : null}
         <div>
-          <h1
-            style={{
-              marginBottom: "10px",
-              borderBottom: "1px solid black",
-              marginTop: "53px",
-            }}
-          >
-            Fingerprint Verification
-          </h1>
           <FingerprintVerification />
         </div>
       </div>

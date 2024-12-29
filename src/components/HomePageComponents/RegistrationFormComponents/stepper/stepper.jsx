@@ -10,7 +10,8 @@ import Toast from "../form/toast/toast";
 export default function StepperComponent(props) {
   const { voterRegistrationType } = props;
   const [currentStep, setCurrentStep] = useState(1);
-  const [isStep1Invalid, setIsStep1Invalid] = useState(true);
+  const [isStep1Invalid, setIsStep1Invalid] = useState(true); // should be true
+  const [isStep2Invalid, setIsStep2Invalid] = useState(true); // should be true
   const [showToast, setShowToast] = useState(false);
 
   const steps = [
@@ -24,8 +25,21 @@ export default function StepperComponent(props) {
         />
       ),
     },
-    { id: 2, label: "Step 2", content: <VoterStep2 /> },
-    { id: 3, label: "Step 3", content: <VoterStep3 /> },
+    {
+      id: 2,
+      label: "Step 2",
+      content: (
+        <VoterStep2
+          registrationType={voterRegistrationType}
+          setIsStep2Invalid={setIsStep2Invalid}
+        />
+      ),
+    },
+    {
+      id: 3,
+      label: "Step 3",
+      content: <VoterStep3 registrationType={voterRegistrationType} />,
+    },
   ];
 
   function handleNext(stepId) {
@@ -33,7 +47,12 @@ export default function StepperComponent(props) {
       setShowToast(true);
       return;
     }
+    if (stepId === 2 && isStep2Invalid) {
+      setShowToast(true);
+      return;
+    }
     if (stepId < steps.length) {
+      setShowToast(false);
       setCurrentStep(stepId + 1);
     }
   }
@@ -113,7 +132,7 @@ export default function StepperComponent(props) {
             <button
               onClick={() => {
                 handleNext(currentStep);
-                setShowToast(true);
+                // setShowToast(true);
               }}
               className="button next"
               style={{ fontSize: "17px" }}
@@ -141,13 +160,20 @@ export default function StepperComponent(props) {
           )}
         </div>
       </div>
-      {showToast && (
+      {showToast && currentStep === 1 ? (
         <Toast
           message="Please enter all fields"
           type="Error"
           onClose={() => setShowToast(false)}
         />
-      )}
+      ) : null}
+      {showToast && currentStep === 2 ? (
+        <Toast
+          message="Please Upload all images and Verify Fingerprint"
+          type="Verification Error"
+          onClose={() => setShowToast(false)}
+        />
+      ) : null}
     </>
   );
 }

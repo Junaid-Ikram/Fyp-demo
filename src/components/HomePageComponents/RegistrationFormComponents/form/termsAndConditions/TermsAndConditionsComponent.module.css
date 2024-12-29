@@ -1,36 +1,29 @@
-/* TermsAndConditionsComponent.module.css */
-
-/* Card container style */
 .termsCard {
-  padding: 2rem;
+  padding: 1rem;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for BlockUI overlay */
 .customBlockuiOverlay {
-  background: rgba(0, 0, 0, 0.4); /* dark transparent background */
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
 
-/* Styling for the Panel header */
 .customPanelHeader {
   color: white;
   font-weight: bold;
 }
 
-/* Add some spacing and padding to the content in Panel */
 .customPanelContent {
   padding: 1rem;
 }
 
-/* Style for the button */
 .customButton {
-  background-color: #a690cf; /* Light purple */
+  background-color: #a690cf;
   border: none;
   color: white;
   font-size: 1rem;
@@ -41,12 +34,12 @@
 }
 
 .customButton:hover {
-  background-color: #8e77ba; /* Slightly darker purple */
+  background-color: #8e77ba;
   cursor: pointer;
 }
 
 .customButton:active {
-  background-color: #8365b5; /* Even darker purple for active state */
+  background-color: #8365b5;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transform: scale(0.95);
 }
@@ -56,7 +49,6 @@
   cursor: not-allowed;
 }
 
-/* Style for the text and button container */
 .mt20 {
   margin-top: 2rem;
 }
