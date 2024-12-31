@@ -1,102 +1,118 @@
 "use client";
-import React, { useState } from "react";
-import "./CascadeSelect.css";
+import React, { useEffect, useState } from "react";
+import "./cascadeSelect.css";
 
-const UploadFile = () => {
-  const [file, setFile] = useState(null);
-  const [filePreview, setFilePreview] = useState(null);
-  const [uploadStatus, setUploadStatus] = useState("idle"); // idle, pending, uploaded
+const Timer = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    durations: {
+      hours: 24,
+      minutes: 60,
+      seconds: 60,
+    },
+  });
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile);
-    setFilePreview(URL.createObjectURL(selectedFile));
-    setUploadStatus("idle");
-  };
+  const targetDate = "2024-12-31T23:59:59";
+  const size = 100;
 
-  const handleUpload = () => {
-    if (file) {
-      setUploadStatus("pending");
-      setTimeout(() => {
-        setUploadStatus("uploaded");
-      }, 2000); // Simulate upload delay
-    }
-  };
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const difference = new Date(targetDate) - new Date();
 
-  const handleCancel = () => {
-    setFile(null);
-    setFilePreview(null);
-    setUploadStatus("idle");
-    document.getElementById("fileInput").value = ""; // Reset the file input value
-  };
+      if (difference > 0) {
+        setTimeLeft({
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+          durations: {
+            hours: 24,
+            minutes: 60,
+            seconds: 60,
+          },
+        });
+      }
+    };
 
-  const triggerFileInput = () => {
-    document.getElementById("fileInput").click();
+    const timer = setInterval(calculateTimeLeft, 1000);
+    calculateTimeLeft();
+
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  const CircleTimer = ({ value, type, maxValue }) => {
+    const strokeWidth = 7;
+    const radius = (size - strokeWidth) / 2;
+    const circumference = radius * 2 * Math.PI;
+    const progress = (value / maxValue) * 100;
+    const strokeDashoffset = circumference - (progress / 100) * circumference;
+
+    return (
+      <div className="circle-timer" style={{ width: size, height: size }}>
+        {/* Background Circle */}
+        <svg className="background-circle" width={size} height={size}>
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            fill="transparent"
+            stroke="#e5e5e5"
+            strokeWidth={strokeWidth}
+          />
+        </svg>
+
+        {/* Progress Circle */}
+        <svg className="progress-circle" width={size} height={size}>
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            fill="transparent"
+            stroke="#17b4d3"
+            strokeWidth={strokeWidth}
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+            strokeLinecap="round"
+            style={{
+              transition: "stroke-dashoffset 1s linear",
+              transform: "rotate(-90deg)",
+              transformOrigin: "50% 50%",
+            }}
+          />
+        </svg>
+
+        {/* Time Display */}
+        <div className="time-display">
+          <div className="time-value">{value}</div>
+          <div className="time-label">
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
-    <div className="upload-container">
-      <div className="actions">
-        <button
-          className="choose-btn"
-          onClick={triggerFileInput}
-          disabled={uploadStatus === "uploaded"} // Disable after upload
-        >
-          + Choose
-        </button>
-        <input
-          id="fileInput"
-          type="file"
-          accept="image/*" // Restrict to images only
-          onChange={handleFileChange}
-          style={{ display: "none" }}
-          disabled={uploadStatus === "uploaded"} // Disable input after upload
-        />
-        {file && uploadStatus !== "uploaded" && (
-          <button className="upload-btn" onClick={handleUpload}>
-            Upload
-          </button>
-        )}
-        {file && uploadStatus !== "uploaded" && (
-          <button className="cancel-btn" onClick={handleCancel}>
-            Cancel
-          </button>
-        )}
-      </div>
-
-      <div className="file-section">
-        {!file && (
-          <p className="upload-instruction">
-            Upload Your CNIC image for Verification by Clicking Button or Drag
-            and Drop
-          </p>
-        )}
-        {file && (
-          <div className="file-info">
-            <div className="file-details">
-              <span className="file-name">{file.name}</span>
-              <span className="file-size">
-                {(file.size / 1024).toFixed(2)} KB
-              </span>
-              {uploadStatus === "pending" && (
-                <span className="file-status pending">Pending</span>
-              )}
-              {uploadStatus === "uploaded" && (
-                <span className="file-status uploaded">Uploaded</span>
-              )}
-            </div>
-            {filePreview && (
-              <img
-                src={filePreview}
-                alt="Selected file preview"
-                className="file-preview"
-              />
-            )}
-          </div>
-        )}
-      </div>
+    <div className="timer-container">
+      <CircleTimer
+        value={timeLeft.hours}
+        type="Hours"
+        maxValue={timeLeft.durations.hours}
+      />
+      <CircleTimer
+        value={timeLeft.minutes}
+        type="Minutes"
+        maxValue={timeLeft.durations.minutes}
+      />
+      <CircleTimer
+        value={timeLeft.seconds}
+        type="Seconds"
+        maxValue={timeLeft.durations.seconds}
+      />
     </div>
   );
 };
 
-export default UploadFile;
+export default Timer;

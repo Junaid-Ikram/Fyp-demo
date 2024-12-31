@@ -1,4 +1,3 @@
-import "./backgroundGradient.css";
 import "./global.css";
 export const metadata = {
   title: "Practice Project",

@@ -1,17 +1,20 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./newStepperComponent.css";
 import "primeicons/primeicons.css";
 import VoterStep1 from "./voterRegistrationSteps/Step1/voterStep1";
 import VoterStep2 from "./voterRegistrationSteps/Step2/voterStep2";
 import VoterStep3 from "./voterRegistrationSteps/Step3/voterStep3";
 import Toast from "../form/toast/toast";
-
-export default function StepperComponent(props) {
-  const { voterRegistrationType } = props;
+export default function StepperComponent({
+  voterRegistrationType,
+  setVoterRegistrationFormVisibility,
+  setCandidateRegistrationFormVisibility,
+}) {
   const [currentStep, setCurrentStep] = useState(1);
   const [isStep1Invalid, setIsStep1Invalid] = useState(true); // should be true
   const [isStep2Invalid, setIsStep2Invalid] = useState(true); // should be true
+  const [isStep3Invalid, setIsStep3Invalid] = useState(true); // should be true
   const [showToast, setShowToast] = useState(false);
 
   const steps = [
@@ -38,22 +41,40 @@ export default function StepperComponent(props) {
     {
       id: 3,
       label: "Step 3",
-      content: <VoterStep3 registrationType={voterRegistrationType} />,
+      content: (
+        <VoterStep3
+          registrationType={voterRegistrationType}
+          setIsStep3Invalid={setIsStep3Invalid}
+        />
+      ),
     },
   ];
 
+  function handleRegisteration() {
+    if (
+      !isStep3Invalid &&
+      voterRegistrationType === "normalVoterRegistration"
+    ) {
+      setVoterRegistrationFormVisibility(false);
+      setShowToast(false);
+    }
+    if (!isStep3Invalid && voterRegistrationType === "candidateRegistration") {
+      setCandidateRegistrationFormVisibility(false);
+      setShowToast(false);
+    } else {
+      setShowToast(true);
+    }
+  }
   function handleNext(stepId) {
-    if (stepId === 1 && isStep1Invalid) {
+    if ((stepId === 1 && isStep1Invalid) || (stepId === 2 && isStep2Invalid)) {
       setShowToast(true);
       return;
-    }
-    if (stepId === 2 && isStep2Invalid) {
-      setShowToast(true);
-      return;
-    }
-    if (stepId < steps.length) {
+    } else if (stepId < steps.length) {
       setShowToast(false);
       setCurrentStep(stepId + 1);
+    } else {
+      setShowToast(false);
+      return;
     }
   }
 
@@ -132,7 +153,6 @@ export default function StepperComponent(props) {
             <button
               onClick={() => {
                 handleNext(currentStep);
-                // setShowToast(true);
               }}
               className="button next"
               style={{ fontSize: "17px" }}
@@ -147,7 +167,7 @@ export default function StepperComponent(props) {
 
           {currentStep === 3 && (
             <button
-              onClick={() => handleNext(currentStep)}
+              onClick={handleRegisteration}
               className="button next"
               style={{ fontSize: "17px" }}
             >
@@ -160,20 +180,30 @@ export default function StepperComponent(props) {
           )}
         </div>
       </div>
-      {showToast && currentStep === 1 ? (
-        <Toast
-          message="Please enter all fields"
-          type="Error"
-          onClose={() => setShowToast(false)}
-        />
-      ) : null}
-      {showToast && currentStep === 2 ? (
-        <Toast
-          message="Please Upload all images and Verify Fingerprint"
-          type="Verification Error"
-          onClose={() => setShowToast(false)}
-        />
-      ) : null}
+
+      <div className="Toast">
+        {showToast && currentStep === 1 ? (
+          <Toast
+            message="Please enter all fields"
+            type="Error"
+            onClose={() => setShowToast(false)}
+          />
+        ) : null}
+        {showToast && currentStep === 2 ? (
+          <Toast
+            message="Please Upload all images and Verify Fingerprint"
+            type="Verification Error"
+            onClose={() => setShowToast(false)}
+          />
+        ) : null}
+        {showToast && currentStep === 3 ? (
+          <Toast
+            message="Please Accept all the terms and conditions"
+            type="Terms Error"
+            onClose={() => setShowToast(false)}
+          />
+        ) : null}
+      </div>
     </>
   );
 }

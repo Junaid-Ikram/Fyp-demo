@@ -39,7 +39,7 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const adminPage = "Admin";
+  const adminPage = "dmin";
   const [activeItem, setActiveItem] = useState(null);
 
   const handleSetActive = (title) => {
@@ -53,7 +53,7 @@ export function AppSidebar() {
           <SidebarGroupLabel>Registration Dashboard</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {adminPage === "dmin"
+              {adminPage === "Admin"
                 ? items
                     .filter((item) => item.title === "Admin Registration")
                     .map((item) => (

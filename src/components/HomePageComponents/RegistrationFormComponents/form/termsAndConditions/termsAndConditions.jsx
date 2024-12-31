@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BlockUI } from "primereact/blockui";
 import { Panel } from "primereact/panel";
 import { Button } from "primereact/button";
@@ -7,10 +7,19 @@ import styles from "./TermsAndConditionsComponent.module.css";
 import CandidateRegistrationsTermsAndConditions from "./candidateRegistrationTerms";
 import VoterRegistrationsTermsAndConditions from "./voterRegistrationTerms";
 import AdminRegistrationsTermsAndConditions from "./adminRegistrationTerms";
-export default function TermsAndConditionsComponent({ registrationType }) {
+export default function TermsAndConditionsComponent({
+  registrationType,
+  setIsStep3Invalid,
+}) {
   const [blocked, setBlocked] = useState(false);
   const buttonText = blocked ? "I Decline" : "I Accept";
-
+  useEffect(() => {
+    if (blocked) {
+      setIsStep3Invalid(false);
+    } else {
+      setIsStep3Invalid(true); // should be true
+    }
+  }, [blocked, setIsStep3Invalid]);
   return (
     <>
       <div className={styles.termsCard}>

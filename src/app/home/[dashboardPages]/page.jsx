@@ -1,4 +1,4 @@
-import DashboardPage from "@/components/HomePageComponents/DashboardPagesComponents/voteDetailsPage";
+import DashboardPage from "@/components/HomePageComponents/DashboardPagesComponents/voteDetailPage/voteDetailsPage";
 import CandidateRegistrationPage from "@/components/HomePageComponents/DashboardPagesComponents/candidateRegistrationPage";
 import VoterRegistrationPage from "@/components/HomePageComponents/DashboardPagesComponents/voterRegistrationPage";
 import BackgroundGradient from "@/components/MainBackgroundGradient/backgroundGradient";

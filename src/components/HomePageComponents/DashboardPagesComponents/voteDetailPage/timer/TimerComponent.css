@@ -13,6 +13,7 @@
 .background-circle,
 .progress-circle {
   position: absolute;
+
   top: 0;
   left: 0;
 }
@@ -30,12 +31,12 @@
 }
 
 .time-value {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: #17b4d3;
 }
 
 .time-label {
-  font-size: 0.6rem;
+  font-size: 0.85rem;
   color: #888;
 }
