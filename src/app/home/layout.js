@@ -1,7 +1,7 @@
 import {
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/HomePageComponents/SideBar/ui/sidebar";
+} from "../../components/HomePageComponents/SideBar/ui/sidebar";
 import { AppSidebar } from "@/components/HomePageComponents/SideBar/sideBar";
 import "./sidebarStyling.css";
 

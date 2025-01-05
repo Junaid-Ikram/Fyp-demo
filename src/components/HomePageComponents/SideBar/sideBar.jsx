@@ -4,16 +4,19 @@ import { LayoutDashboard } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "./ui/sidebar";
+} from "../SideBar/ui/sidebar";
 import candidate from "../SideBar/iconSvgs/candidate";
 import voting from "./iconSvgs/voting";
 import Link from "next/link";
+import { NavUser } from "./sideBarComponents/nav-user";
 
 const items = [
   {
@@ -37,7 +40,13 @@ const items = [
     icon: candidate,
   },
 ];
-
+const data = {
+  user: {
+    name: "E-Voting",
+    email: "evoting@blockchain.com",
+    avatar: " ",
+  },
+};
 export function AppSidebar() {
   const adminPage = "dmin";
   const [activeItem, setActiveItem] = useState(null);
@@ -48,6 +57,9 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
+      <SidebarHeader>
+        <NavUser user={data.user} />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Registration Dashboard</SidebarGroupLabel>
@@ -90,6 +102,9 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={data.user} />
+      </SidebarFooter>
     </Sidebar>
   );
 }
