@@ -1,0 +1,10 @@
+.totalCountsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+.totalCountsContainer > * {
+  margin-right: 45px;
+}

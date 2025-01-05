@@ -16,7 +16,8 @@ import {
   useSidebar,
 } from "../ui/sidebar";
 import Link from "next/link";
-
+import Image from "next/image";
+import images from "../../../../assets/images/avatar.jpg";
 export function NavUser({ user }) {
   const { isMobile } = useSidebar();
 
@@ -30,8 +31,14 @@ export function NavUser({ user }) {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <Image
+                  src={images}
+                  width={200}
+                  height={200}
+                  alt="user-avatar"
+                />
+                {/* <AvatarImage src={user.avatar} alt={user.name} /> */}
+                {/* <AvatarFallback className="rounded-lg">CN</AvatarFallback> */}
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{user.name}</span>

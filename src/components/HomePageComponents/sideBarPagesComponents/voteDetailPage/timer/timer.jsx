@@ -150,7 +150,7 @@ const Timer = ({ onEnd }) => {
 
   const addDays = 0;
   const addHours = 0;
-  const addMinutes = 10;
+  const addMinutes = 0;
   const addSeconds = 10;
 
   useEffect(() => {

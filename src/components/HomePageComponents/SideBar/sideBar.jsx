@@ -8,7 +8,6 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -44,7 +43,6 @@ const data = {
   user: {
     name: "E-Voting",
     email: "evoting@blockchain.com",
-    avatar: " ",
   },
 };
 export function AppSidebar() {
@@ -57,9 +55,6 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader>
-        <NavUser user={data.user} />
-      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Registration Dashboard</SidebarGroupLabel>

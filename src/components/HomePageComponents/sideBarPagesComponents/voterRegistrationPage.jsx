@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import "../DashboardPagesComponents/dashboardPagesComponents.css";
+import "./dashboardPagesComponents.css";
 import StepperComponent from "../RegistrationFormComponents/stepper/stepper";
 import UserRegisteredPannel from "./userRegisteredPannelComponent/userRegisteredPannel";
 export default function VoterRegistrationPage() {

@@ -1,4 +1,4 @@
-import "../DashboardPagesComponents/dashboardPagesComponents.css";
+import "./dashboardPagesComponents.css";
 import StepperComponent from "../RegistrationFormComponents/stepper/stepper";
 export default function AdminRegistrationPage() {
   return (

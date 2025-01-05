@@ -3,8 +3,9 @@ import { useState } from "react";
 import Timer from "./timer/timer";
 import VotingClockSVG from "@/assets/svgs/voteDetailsPageSVGS/votingClockSVG";
 import styles from "./VoteDetails.module.css";
+import VoterDashboard from "./dashBoard/voterDashboard/voterDashboard";
 export default function VoteDetailsDashboardPage() {
-  const [timerEnded, setTimerEnded] = useState(false);
+  const [timerEnded, setTimerEnded] = useState(true);
   const handleTimerEnd = () => {
     setTimerEnded(true);
   };
@@ -31,9 +32,7 @@ export default function VoteDetailsDashboardPage() {
           </div>
         </div>
       ) : (
-        <div>
-          <h1>Dashboard</h1>
-        </div>
+        <VoterDashboard />
       )}
     </>
   );
