@@ -19,12 +19,17 @@ import { NavUser } from "./sideBarComponents/nav-user";
 
 const items = [
   {
+    title: "Admin Dashboard",
+    url: "/home/adminDashboard",
+    icon: candidate,
+  },
+  {
     title: "Vote Details",
     url: "/home/votingDashboard",
     icon: LayoutDashboard,
   },
   {
-    title: "Voter Registration",
+    title: "Vote Registration",
     url: "/home/voterRegistration",
     icon: voting,
   },
@@ -34,19 +39,26 @@ const items = [
     icon: candidate,
   },
   {
-    title: "Admin Registration",
-    url: "/home/adminRegistration",
+    title: "Party Registration",
+    url: "/home/partyRegistration",
+    icon: candidate,
+  },
+  {
+    title: "Party Candidate Registration",
+    url: "/home/partyCandidateRegistration",
     icon: candidate,
   },
 ];
+
 const data = {
   user: {
     name: "E-Voting",
     email: "evoting@blockchain.com",
   },
 };
+
 export function AppSidebar() {
-  const adminPage = "dmin";
+  const PageUser = "voter"; // Change this to "party", "partyCandidate", "voter", or "admin" to test
   const [activeItem, setActiveItem] = useState(null);
 
   const handleSetActive = (title) => {
@@ -57,12 +69,17 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Registration Dashboard</SidebarGroupLabel>
+          <SidebarGroupLabel>Dashboard Pages</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {adminPage === "Admin"
+              {PageUser === "admin"
                 ? items
-                    .filter((item) => item.title === "Admin Registration")
+                    .filter(
+                      (item) =>
+                        item.title === "Admin Dashboard" ||
+                        item.title === "Vote Registration" ||
+                        item.title === "Party Registration"
+                    )
                     .map((item) => (
                       <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton
@@ -77,8 +94,14 @@ export function AppSidebar() {
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     ))
-                : items
-                    .filter((item) => item.title !== "Admin Registration")
+                : PageUser === "party"
+                ? items
+                    .filter(
+                      (item) =>
+                        item.title === "Vote Details" ||
+                        item.title === "Vote Registration" ||
+                        item.title === "Party Candidate Registration"
+                    )
                     .map((item) => (
                       <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton
@@ -92,7 +115,51 @@ export function AppSidebar() {
                           </Link>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
-                    ))}
+                    ))
+                : PageUser === "partyCandidate"
+                ? items
+                    .filter(
+                      (item) =>
+                        item.title === "Vote Details" ||
+                        item.title === "Vote Registration"
+                    )
+                    .map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={activeItem === item.title}
+                          onClick={() => handleSetActive(item.title)}
+                        >
+                          <Link href={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))
+                : PageUser === "voter"
+                ? items
+                    .filter(
+                      (item) =>
+                        item.title === "Vote Details" ||
+                        item.title === "Vote Registration" ||
+                        item.title === "Candidate Registration"
+                    )
+                    .map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={activeItem === item.title}
+                          onClick={() => handleSetActive(item.title)}
+                        >
+                          <Link href={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))
+                : null}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

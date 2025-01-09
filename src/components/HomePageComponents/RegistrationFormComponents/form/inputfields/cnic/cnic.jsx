@@ -52,7 +52,7 @@ export default function CnicComponent({ setCnicValid }) {
         <div className={styles.tooltipArrow}></div>
       </div>
       {cnicIsTouched && cnicIsInvalid && (
-        <span className={styles.userErrorText}>Please Enter Your CNIC</span>
+        <span className={styles.userErrorText}>Please Enter CNIC</span>
       )}
     </div>
   );
