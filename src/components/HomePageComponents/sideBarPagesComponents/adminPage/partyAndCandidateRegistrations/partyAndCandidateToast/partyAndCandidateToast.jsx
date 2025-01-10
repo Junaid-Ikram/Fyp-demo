@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import styles from "./PartyAndCandidateToast.module.css";
 import { IoCloseCircle } from "react-icons/io5";
 import { IoIosClose } from "react-icons/io";
-export default function partyAndCandidateToast({ message, type, onClose }) {
+
+export default function PartyAndCandidateToast({ message, type, onClose }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
@@ -13,6 +14,8 @@ export default function partyAndCandidateToast({ message, type, onClose }) {
 
   return (
     <div className={`${styles.toast} ${styles[type]}`}>
+      {" "}
+      {/* Dynamically apply the type (success or error) */}
       <div className={styles.icon}>
         <IoCloseCircle />
       </div>

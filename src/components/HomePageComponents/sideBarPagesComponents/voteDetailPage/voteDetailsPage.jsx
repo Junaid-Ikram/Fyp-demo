@@ -5,7 +5,7 @@ import VotingClockSVG from "@/assets/svgs/voteDetailsPageSVGS/votingClockSVG";
 import styles from "./VoteDetails.module.css";
 import VoterDashboard from "./dashBoard/voterDashboard/voterDashboard";
 export default function VoteDetailsDashboardPage() {
-  const [timerEnded, setTimerEnded] = useState(false);
+  const [timerEnded, setTimerEnded] = useState(true);
   const handleTimerEnd = () => {
     setTimerEnded(true);
   };

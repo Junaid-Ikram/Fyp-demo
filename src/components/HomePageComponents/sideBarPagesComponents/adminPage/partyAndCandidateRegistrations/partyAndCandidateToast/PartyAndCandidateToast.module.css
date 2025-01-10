@@ -1,10 +1,9 @@
-/* components/Toast.module.css */
 .toast {
   display: flex;
   align-items: center;
   gap: 10px;
   background: rgba(255, 233, 233, 0.622);
-  color: #f52323;
+  color: #6df523;
   border: 1px solid rgba(245, 198, 203, 0.786);
   border-radius: 8px;
   padding: 10px 15px;
@@ -23,9 +22,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 8px; /* Red bar width */
+  width: 8px;
   height: 100%;
-  background-color: #f52323; /* Red color bar */
+  background-color: #6df5231c;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -39,9 +38,22 @@
   }
 }
 
+.toast.success {
+  background: rgba(103, 239, 103, 0.063);
+  color: #28a745;
+}
+
+.toast.success::before {
+  background-color: #28a745;
+}
+
 .toast.error {
-  background: rgba(255, 233, 233, 0.8);
-  color: #f52323;
+  background: rgba(255, 99, 99, 0.063);
+  color: #dc3545;
+}
+
+.toast.error::before {
+  background-color: #dc3545;
 }
 
 .icon {

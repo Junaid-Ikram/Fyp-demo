@@ -50,7 +50,7 @@ const chartData = [
   fill: chartConfig[item.candidates]?.color || "hsl(var(--chart-default))",
 }));
 
-export function DashboardPieChart() {
+export function DashboardPieChart({ cardTtile }) {
   const totalVotes = React.useMemo(() => {
     return chartData.reduce((acc, curr) => acc + curr.votes, 0);
   }, []);
@@ -59,7 +59,7 @@ export function DashboardPieChart() {
     <div className="pieChartContainer">
       <Card className="flex flex-col">
         <CardHeader className="items-center pb-0">
-          <CardTitle>MNA Votes Count</CardTitle>
+          <CardTitle>{cardTtile} Votes Count</CardTitle>
           <CardDescription>
             Total Votes of Candidates and Counting
           </CardDescription>

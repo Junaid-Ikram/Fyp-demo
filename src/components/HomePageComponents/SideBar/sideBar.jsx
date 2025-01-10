@@ -58,7 +58,7 @@ const data = {
 };
 
 export function AppSidebar() {
-  const PageUser = "voter"; // Change this to "party", "partyCandidate", "voter", or "admin" to test
+  const PageUser = "party"; // Change this to "party", "partyCandidate", "voter", or "admin" to test
   const [activeItem, setActiveItem] = useState(null);
 
   const handleSetActive = (title) => {
@@ -165,7 +165,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={data.user} pageuser={PageUser} />
       </SidebarFooter>
     </Sidebar>
   );

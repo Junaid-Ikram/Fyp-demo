@@ -6,7 +6,7 @@ import avatar from "../../../../../../../../assets/images/avatar.jpg";
 const CandidatesLists = () => {
   const candidates = [
     {
-      id: "#12598",
+      seat: "MNA",
       profileImage: avatar,
       name: "Sardar Mehtab",
       party: "PML-N",
@@ -15,7 +15,7 @@ const CandidatesLists = () => {
       constituency: "NA-40",
     },
     {
-      id: "#20587",
+      seat: "MNA",
       profileImage: avatar,
       name: "Ahmed Ali",
       party: "PPP",
@@ -24,7 +24,7 @@ const CandidatesLists = () => {
       constituency: "NA-40",
     },
     {
-      id: "#10020",
+      seat: "MNA",
       profileImage: avatar,
       name: "Imran Khan",
       party: "PTI",
@@ -46,7 +46,7 @@ const CandidatesLists = () => {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>SEAT</th>
             <th>Profile</th>
             <th>Candidate Details</th>
             <th>Votes</th>
@@ -57,7 +57,7 @@ const CandidatesLists = () => {
         <tbody>
           {candidates.map((candidate, index) => (
             <tr key={index} className={styles.row}>
-              <td className={styles.id}>{candidate.id}</td>
+              <td className={styles.id}>{candidate.seat}</td>
               <td>
                 <div className={styles.profileImageWrapper}>
                   <Image

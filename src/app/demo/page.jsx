@@ -1,9 +1,5 @@
-import PartyCandidateRegistrationPage from "@/components/HomePageComponents/sideBarPagesComponents/adminPage/partyAndCandidateRegistrations/partyCandidateRegistrationPage";
+import LiveVotingIndicator from "@/components/HomePageComponents/sideBarPagesComponents/voteDetailPage/dashBoard/voterDashboard/voterDashboardComponents/liveIndicator/liveVotingIndicator";
 
 export default function () {
-  return (
-    <>
-      <PartyCandidateRegistrationPage />
-    </>
-  );
+  return <LiveVotingIndicator />;
 }

@@ -1,5 +1,6 @@
 "use client";
-import { ChevronsUpDown, LogOut } from "lucide-react";
+import { ChevronsUpDown, LogOut } from "lucide-react"; // Import ArrowUpCircle for the withdraw icon
+import { PiHandWithdraw } from "react-icons/pi";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,
@@ -18,7 +19,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import images from "../../../../assets/images/avatar.jpg";
-export function NavUser({ user }) {
+
+export function NavUser({ user, pageuser }) {
   const { isMobile } = useSidebar();
 
   return (
@@ -66,6 +68,18 @@ export function NavUser({ user }) {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+
+            {/* Conditionally render the "Withdraw" button if PageUser is partyCandidate */}
+            {pageuser === "partyCandidate" && (
+              <>
+                <DropdownMenuItem>
+                  <PiHandWithdraw />
+                  <Link href="/">Withdraw</Link>
+                </DropdownMenuItem>{" "}
+                <DropdownMenuSeparator />
+              </>
+            )}
+
             <DropdownMenuItem>
               <LogOut />
               <Link href="/">Log out</Link>

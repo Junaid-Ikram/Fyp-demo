@@ -5,15 +5,54 @@ import CnicComponent from "@/components/HomePageComponents/RegistrationFormCompo
 import UserName from "@/components/HomePageComponents/RegistrationFormComponents/form/inputfields/userName/userName";
 import "./partyRegistrationPage.css";
 import WalletAddress from "@/components/HomePageComponents/RegistrationFormComponents/form/inputfields/walletAddress/walletAddress";
+import FingerprintVerification from "@/components/HomePageComponents/RegistrationFormComponents/form/fingerPrint/fingerPrint";
+import PartyAndCandidateToast from "./partyAndCandidateToast/partyAndCandidateToast";
+
 export default function PartyRegistrationPage() {
   const [isPartyNameValid, setPartyNameValid] = useState(false);
   const [isPartyLeaderNameValid, setPartyLeaderNameValid] = useState(false);
   const [isCnicValid, setCnicValid] = useState(false);
   const [isPartyFlagUploaded, setPartyFlagUploaded] = useState(false);
   const [isWalletAddressValid, setWalletAddressValidity] = useState(false);
+
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
+  const [showToast, setShowToast] = useState(false);
+
+  const handleRegisterParty = () => {
+    if (
+      isPartyNameValid &&
+      isPartyLeaderNameValid &&
+      isCnicValid &&
+      isPartyFlagUploaded &&
+      isWalletAddressValid
+    ) {
+      // Show success toast
+      setToastMessage("Party successfully registered!");
+      setToastType("success");
+      setShowToast(true);
+
+      // Reset form fields
+      setPartyNameValid(false);
+      setPartyLeaderNameValid(false);
+      setCnicValid(false);
+      setPartyFlagUploaded(false);
+      setWalletAddressValidity(false);
+
+      // Optionally reload the page to reset
+      // window.location.reload();
+    } else {
+      // Show error toast
+      setToastMessage("Please fill all the required fields correctly.");
+      setToastType("error");
+      setShowToast(true);
+    }
+  };
+
   return (
     <>
       <div className="partyRegistration-container">
+        <h1 className="partyRegistrationHeader">Party Registration</h1>
         <div
           style={{
             display: "flex",
@@ -66,11 +105,43 @@ export default function PartyRegistrationPage() {
               />
             </div>
           </div>
-        </div>{" "}
-        <button className="partyRegisterbutton registerParty">
+          <div style={{ marginTop: "40px", marginLeft: "-25px" }}>
+            <FingerprintVerification />
+          </div>
+          <div>
+            <h1
+              style={{
+                marginTop: "20px",
+                marginLeft: "10px",
+                marginBottom: "20px",
+              }}
+            >
+              Party Leader Profile Image:
+            </h1>
+            <div>
+              <FileUploadComponent
+                fileUploaded={setPartyFlagUploaded}
+                fileInputId="partyLeaderImage"
+                headings=" Upload Party Leader image for Verification by Clicking Button"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          className="partyRegisterbutton registerParty"
+          onClick={handleRegisterParty}
+        >
           Register Party
         </button>
       </div>
+
+      {showToast && (
+        <PartyAndCandidateToast
+          message={toastMessage}
+          type={toastType}
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </>
   );
 }
