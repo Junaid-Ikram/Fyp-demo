@@ -58,7 +58,7 @@ const data = {
 };
 
 export function AppSidebar() {
-  const PageUser = "party"; // Change this to "party", "partyCandidate", "voter", or "admin" to test
+  const PageUser = "admin"; // Change this to "party", "partyCandidate", "voter", or "admin" to test
   const [activeItem, setActiveItem] = useState(null);
 
   const handleSetActive = (title) => {
