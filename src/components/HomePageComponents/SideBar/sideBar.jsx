@@ -24,6 +24,11 @@ const items = [
     icon: candidate,
   },
   {
+    title: "Sub Admin Dashboard",
+    url: "/home/subAdminDashboard",
+    icon: candidate,
+  },
+  {
     title: "Vote Details",
     url: "/home/votingDashboard",
     icon: LayoutDashboard,
@@ -58,7 +63,7 @@ const data = {
 };
 
 export function AppSidebar() {
-  const PageUser = "admin"; // Change this to "party", "partyCandidate", "voter", or "admin" to test
+  const PageUser = "subadmin"; // Change this to "party", "partyCandidate", "voter","subadmin" or "admin" to test
   const [activeItem, setActiveItem] = useState(null);
 
   const handleSetActive = (title) => {
@@ -77,7 +82,6 @@ export function AppSidebar() {
                     .filter(
                       (item) =>
                         item.title === "Admin Dashboard" ||
-                        item.title === "Vote Registration" ||
                         item.title === "Party Registration"
                     )
                     .map((item) => (
@@ -145,6 +149,23 @@ export function AppSidebar() {
                         item.title === "Vote Registration" ||
                         item.title === "Candidate Registration"
                     )
+                    .map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={activeItem === item.title}
+                          onClick={() => handleSetActive(item.title)}
+                        >
+                          <Link href={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))
+                : PageUser === "subadmin"
+                ? items
+                    .filter((item) => item.title === "Sub Admin Dashboard")
                     .map((item) => (
                       <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton
